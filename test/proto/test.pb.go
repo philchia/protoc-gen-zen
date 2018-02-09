@@ -20,7 +20,6 @@ import fmt "fmt"
 import math "math"
 
 import (
-	context "context"
 	zen "github.com/philchia/zen"
 	http "net/http"
 )
@@ -117,8 +116,8 @@ func init() {
 }
 
 type TestService interface {
-	Ping(context.Context, *ReqPing) (*RespPing, error)
-	GetUser(context.Context, *ReqGetUser) (*RespGetUser, error)
+	Ping(zen.Context, *ReqPing) (*RespPing, error)
+	GetUser(zen.Context, *ReqGetUser) (*RespGetUser, error)
 }
 
 func RegisterTestServer(router zen.Router, server TestService) {

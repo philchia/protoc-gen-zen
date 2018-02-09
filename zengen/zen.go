@@ -32,7 +32,6 @@ func (z *ZenGen) Generate(file *generator.FileDescriptor) {
 	defer z.Pop()
 
 	z.AddImport("zen", "github.com/philchia/zen", file)
-	z.AddImport("context", "context", file)
 	z.AddImport("http", "net/http", file)
 
 	for _, s := range file.GetService() {
@@ -49,7 +48,7 @@ func (z *ZenGen) GenerateService(service *descriptor.ServiceDescriptorProto) {
 	z.P("type ", service.GetName(), "Service", " interface {")
 	for _, m := range service.GetMethod() {
 		z.In()
-		z.P(m.GetName(), "(context.Context, *", getTypeName(m.GetInputType()), ") (*", getTypeName(m.GetOutputType()), ", error)")
+		z.P(m.GetName(), "(zen.Context, *", getTypeName(m.GetInputType()), ") (*", getTypeName(m.GetOutputType()), ", error)")
 	}
 	z.Out()
 	z.P("}")
