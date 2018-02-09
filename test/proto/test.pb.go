@@ -2,28 +2,22 @@
 // source: test/proto/test.proto
 
 /*
-	Package http is a generated protocol buffer package.
+Package proto is a generated protocol buffer package.
 
-	It is generated from these files:
-		test/proto/test.proto
+It is generated from these files:
+	test/proto/test.proto
 
-	It has these top-level messages:
-		ReqPing
-		RespPing
-		ReqGetUser
-		RespGetUser
+It has these top-level messages:
+	ReqPing
+	RespPing
+	ReqGetUser
+	RespGetUser
 */
-package http
+package proto
 
 import proto1 "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-
-import (
-	context "context"
-	zen "github.com/philchia/zen"
-	http "net/http"
-)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto1.Marshal
@@ -114,42 +108,6 @@ func init() {
 	proto1.RegisterType((*ReqGetUser)(nil), "proto.ReqGetUser")
 	proto1.RegisterType((*RespGetUser)(nil), "proto.RespGetUser")
 	proto1.RegisterEnum("proto.Foo", Foo_name, Foo_value)
-}
-
-type TestService interface {
-	Ping(context.Context, *ReqPing) (*RespPing, error)
-	GetUser(context.Context, *ReqGetUser) (*RespGetUser, error)
-}
-
-func RegisterTestServer(router zen.Router, server TestService) {
-	router.Post("test.ping", func(ctx zen.Context) {
-		var req = new(ReqPing)
-		if err := ctx.BindJSON(req); err != nil {
-			ctx.WriteStatus(http.StatusBadRequest)
-			return
-		}
-		resp, err := server.Ping(ctx, req)
-		if err != nil {
-			ctx.WriteStatus(http.StatusBadRequest)
-			return
-		}
-		ctx.JSON(resp)
-	})
-
-	router.Post("test.getuser", func(ctx zen.Context) {
-		var req = new(ReqGetUser)
-		if err := ctx.BindJSON(req); err != nil {
-			ctx.WriteStatus(http.StatusBadRequest)
-			return
-		}
-		resp, err := server.GetUser(ctx, req)
-		if err != nil {
-			ctx.WriteStatus(http.StatusBadRequest)
-			return
-		}
-		ctx.JSON(resp)
-	})
-
 }
 
 func init() { proto1.RegisterFile("test/proto/test.proto", fileDescriptor0) }
