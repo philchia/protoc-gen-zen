@@ -2,7 +2,7 @@
 // source: test/proto/test.proto
 
 /*
-	Package context is a generated protocol buffer package.
+	Package http is a generated protocol buffer package.
 
 	It is generated from these files:
 		test/proto/test.proto
@@ -13,7 +13,7 @@
 		ReqGetUser
 		RespGetUser
 */
-package context
+package http
 
 import proto1 "github.com/golang/protobuf/proto"
 import fmt "fmt"
@@ -22,6 +22,7 @@ import math "math"
 import (
 	context "context"
 	zen "github.com/philchia/zen"
+	http "net/http"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

@@ -33,6 +33,7 @@ func (z *ZenGen) Generate(file *generator.FileDescriptor) {
 
 	z.AddImport("zen", "github.com/philchia/zen", file)
 	z.AddImport("context", "context", file)
+	z.AddImport("http", "net/http", file)
 
 	for _, s := range file.GetService() {
 		z.GenerateService(s)
