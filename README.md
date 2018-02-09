@@ -4,5 +4,5 @@
 
 ```sh
     go install
-    protoc -I . --zen_out=. ./test/proto/*.proto
+	protoc -I . --zen_out="plugins:." ./test/proto/*.proto
 ```
