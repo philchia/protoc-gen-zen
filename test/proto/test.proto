@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package proto;
+
+service Test {
+    rpc Ping (ReqPing) returns (RespPing);
+    rpc GetUser (ReqGetUser) returns (RespGetUser);
+}
+
+message ReqPing {
+    string msg = 1;
+}
+
+message RespPing {
+    string msg = 1;
+}
+
+enum Foo {
+    zero = 0;
+    one = 1;
+    two = 2;
+}
+
+message ReqGetUser {
+}
+
+message RespGetUser {
+}
